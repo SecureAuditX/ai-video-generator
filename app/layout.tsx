@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ai Video Generator",
+  title: "AI Video Generator",
   description: "Generate videos using AI",
 };
 
