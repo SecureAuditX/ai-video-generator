@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { createClient } from "@/lib/supabase/server";
+import SupabaseProvider from "@/components/providers/supabase-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,17 +19,24 @@ export const metadata: Metadata = {
   description: "Generate videos using AI",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <SupabaseProvider initialUser={user}>
+          {children}
+        </SupabaseProvider>
       </body>
     </html>
   );
