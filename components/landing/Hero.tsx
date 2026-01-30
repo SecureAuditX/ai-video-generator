@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export function Hero() {
   return (
@@ -26,16 +27,25 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-up delay-300">
-          <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-primary/20" asChild>
-            <Link href="#get-started">
-              Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button variant="outline" size="lg" className="rounded-full text-base px-8 h-12" asChild>
-            <Link href="#demo">
-              <Play className="mr-2 h-4 w-4 fill-current" /> Watch Demo
-            </Link>
-          </Button>
+          <SignedOut>
+            <SignUpButton mode="modal">
+              <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-primary/20">
+                Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </SignUpButton>
+            <SignInButton mode="modal">
+              <Button variant="outline" size="lg" className="rounded-full text-base px-8 h-12">
+                Sign In
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-primary/20" asChild>
+              <Link href="/dashboard">
+                Go to Dashboard <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </SignedIn>
         </div>
 
         <div className="mt-12 w-full max-w-5xl rounded-xl border bg-card/50 backdrop-blur-sm shadow-2xl overflow-hidden aspect-video animate-fade-in-up delay-500 relative group cursor-pointer hover:border-primary/50 transition-colors">
