@@ -35,9 +35,11 @@ export function Sidebar() {
           <span className="text-xl font-bold text-gray-900">Zynova</span>
         </Link>
         
-        <Button className="w-full justify-start gap-2 h-12 text-base font-semibold shadow-md mb-6" size="lg">
+        <Button asChild className="w-full justify-start gap-2 h-12 text-base font-semibold shadow-md mb-6" size="lg">
+          <Link href="/dashboard/create">
             <Plus className="h-5 w-5" />
             Create New Series
+          </Link>
         </Button>
 
         <div className="space-y-2">
