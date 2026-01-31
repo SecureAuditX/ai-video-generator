@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
-import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export function Hero() {
   return (
@@ -30,14 +30,9 @@ export function Hero() {
           <SignedOut>
             <SignUpButton mode="modal">
               <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-primary/20">
-                Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
+                Get Started <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </SignUpButton>
-            <SignInButton mode="modal">
-              <Button variant="outline" size="lg" className="rounded-full text-base px-8 h-12">
-                Sign In
-              </Button>
-            </SignInButton>
           </SignedOut>
           <SignedIn>
             <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-primary/20" asChild>
