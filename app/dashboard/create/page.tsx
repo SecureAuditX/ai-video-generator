@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CreateStepper } from "@/components/create/CreateStepper";
 import { NicheSelection } from "@/components/create/NicheSelection";
+import { LanguageVoiceSelection } from "@/components/create/LanguageVoiceSelection";
 import { StepFooter } from "@/components/create/StepFooter";
 
 export default function CreateSeriesPage() {
@@ -28,6 +29,8 @@ export default function CreateSeriesPage() {
         switch (currentStep) {
             case 1:
                 return !!formData.niche;
+            case 2:
+                return !!formData.language && !!formData.voice;
             // Add validation for other steps
             default:
                 return true;
@@ -45,14 +48,16 @@ export default function CreateSeriesPage() {
                         onSelect={(niche) => setFormData({ ...formData, niche })} 
                     />
                 )}
+
+                {currentStep === 2 && (
+                    <LanguageVoiceSelection 
+                        language={formData.language}
+                        voice={formData.voice}
+                        onUpdate={(data) => setFormData({ ...formData, ...data })}
+                    />
+                )}
                 
                 {/* Placeholders for future steps */}
-                {currentStep === 2 && (
-                    <div className="text-center py-20 bg-white rounded-xl border shadow-sm">
-                        <h2 className="text-2xl font-semibold mb-4">Step 2: Language & Voice</h2>
-                        <p className="text-muted-foreground">Coming next...</p>
-                    </div>
-                )}
                  {currentStep > 2 && (
                     <div className="text-center py-20 bg-white rounded-xl border shadow-sm">
                         <h2 className="text-2xl font-semibold mb-4">Step {currentStep}</h2>
