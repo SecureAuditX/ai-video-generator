@@ -29,13 +29,13 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-up delay-300">
           <SignedOut>
             <SignUpButton mode="modal">
-              <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-primary/20">
+              <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-white/10 bg-white text-black hover:bg-white/90">
                 Get Started <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </SignUpButton>
           </SignedOut>
           <SignedIn>
-            <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-primary/20" asChild>
+            <Button size="lg" className="rounded-full text-base px-8 h-12 shadow-lg shadow-white/10 bg-white text-black hover:bg-white/90" asChild>
               <Link href="/dashboard">
                 Go to Dashboard <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
