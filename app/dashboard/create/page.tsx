@@ -1,0 +1,72 @@
+"use client";
+
+import { useState } from "react";
+import { CreateStepper } from "@/components/create/CreateStepper";
+import { NicheSelection } from "@/components/create/NicheSelection";
+import { StepFooter } from "@/components/create/StepFooter";
+
+export default function CreateSeriesPage() {
+    const [currentStep, setCurrentStep] = useState(1);
+    const [formData, setFormData] = useState({
+        niche: "",
+        language: "",
+        voice: "",
+        // Add other fields as needed
+    });
+
+    const totalSteps = 6;
+
+    const handleNext = () => {
+        setCurrentStep(prev => Math.min(prev + 1, totalSteps));
+    };
+
+    const handleBack = () => {
+        setCurrentStep(prev => Math.max(prev - 1, 1));
+    };
+
+    const isStepValid = () => {
+        switch (currentStep) {
+            case 1:
+                return !!formData.niche;
+            // Add validation for other steps
+            default:
+                return true;
+        }
+    };
+
+    return (
+        <div className="max-w-4xl mx-auto space-y-8 py-8">
+            <CreateStepper currentStep={currentStep} totalSteps={totalSteps} />
+            
+            <div className="mt-8">
+                {currentStep === 1 && (
+                    <NicheSelection 
+                        value={formData.niche}
+                        onSelect={(niche) => setFormData({ ...formData, niche })} 
+                    />
+                )}
+                
+                {/* Placeholders for future steps */}
+                {currentStep === 2 && (
+                    <div className="text-center py-20 bg-white rounded-xl border shadow-sm">
+                        <h2 className="text-2xl font-semibold mb-4">Step 2: Language & Voice</h2>
+                        <p className="text-muted-foreground">Coming next...</p>
+                    </div>
+                )}
+                 {currentStep > 2 && (
+                    <div className="text-center py-20 bg-white rounded-xl border shadow-sm">
+                        <h2 className="text-2xl font-semibold mb-4">Step {currentStep}</h2>
+                        <p className="text-muted-foreground">Work in progress...</p>
+                    </div>
+                )}
+                
+                <StepFooter 
+                    onBack={handleBack}
+                    onNext={handleNext}
+                    isBackDisabled={currentStep === 1}
+                    isNextDisabled={!isStepValid()}
+                />
+            </div>
+        </div>
+    );
+}
