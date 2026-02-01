@@ -2,6 +2,40 @@ import { createClient } from "@supabase/supabase-js";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+export async function GET(
+    req: Request,
+    { params }: { params: { id: string } }
+) {
+    try {
+        const { userId } = await auth();
+        if (!userId) {
+            return new NextResponse("Unauthorized", { status: 401 });
+        }
+
+        const supabase = createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            process.env.SUPABASE_SERVICE_ROLE_KEY!
+        );
+
+        const { data, error } = await supabase
+            .from("video_series")
+            .select("*")
+            .eq("id", params.id)
+            .eq("user_id", userId)
+            .single();
+
+        if (error) {
+            console.error("Supabase error:", error);
+            return new NextResponse(error.message, { status: 500 });
+        }
+
+        return NextResponse.json(data);
+    } catch (error) {
+        console.error("[VIDEO_SERIES_GET_ID]", error);
+        return new NextResponse("Internal Error", { status: 500 });
+    }
+}
+
 export async function DELETE(
     req: Request,
     { params }: { params: { id: string } }
