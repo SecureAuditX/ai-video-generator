@@ -39,9 +39,8 @@ export default function CreateSeriesPage() {
         if (editId) {
             const fetchSeriesData = async () => {
                 try {
-                    const response = await fetch(`/api/video-series`);
-                    const allSeries = await response.json();
-                    const seriesToEdit = allSeries.find((s: any) => s.id === editId);
+                    const response = await fetch(`/api/video-series/${editId}`);
+                    const seriesToEdit = await response.json();
                     
                     if (seriesToEdit) {
                         setFormData({

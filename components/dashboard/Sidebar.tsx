@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { 
+  LayoutDashboard,
   LayoutList, 
   Video, 
   BookOpen, 
@@ -17,6 +18,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const sidebarItems = [
+  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: LayoutList, label: "Series", href: "/dashboard/series" },
   { icon: Video, label: "Videos", href: "/dashboard/videos" },
   { icon: BookOpen, label: "Guides", href: "/dashboard/guides" },
@@ -45,7 +47,9 @@ export function Sidebar() {
         <div className="space-y-2">
           {sidebarItems.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname.startsWith(item.href);
+            const isActive = item.href === "/dashboard" 
+              ? pathname === "/dashboard" 
+              : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
