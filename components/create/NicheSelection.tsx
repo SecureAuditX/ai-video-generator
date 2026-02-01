@@ -74,10 +74,10 @@ const niches = [
 export function NicheSelection({ value, onSelect }: NicheSelectionProps) {
 
     return (
-        <div className="space-y-6">
-            <div className="text-center space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">Select Your Video Niche</h2>
-                <p className="text-muted-foreground">Choose a topic for your AI-generated video series.</p>
+        <div className="space-y-4">
+            <div className="text-center">
+                <h2 className="text-2xl font-bold tracking-tight">Select Your Video Niche</h2>
+                <p className="text-sm text-muted-foreground">Choose a topic for your AI-generated video series.</p>
             </div>
 
             <Tabs defaultValue="available" className="w-full">
@@ -86,9 +86,9 @@ export function NicheSelection({ value, onSelect }: NicheSelectionProps) {
                     <TabsTrigger value="custom">Custom Niche</TabsTrigger>
                 </TabsList>
                 
-                <TabsContent value="available" className="mt-6 space-y-6">
-                    <ScrollArea className="h-[400px] w-full rounded-md border p-4">
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <TabsContent value="available" className="mt-4 space-y-4">
+                    <ScrollArea className="h-[280px] w-full rounded-md border p-3">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                             {niches.map((niche) => {
                                 const Icon = niche.icon;
                                 const isSelected = value === niche.id;
@@ -107,14 +107,14 @@ export function NicheSelection({ value, onSelect }: NicheSelectionProps) {
                                                 <Check className="h-3 w-3" />
                                             </div>
                                         )}
-                                        <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2">
-                                            <div className={cn("p-2 rounded-lg", niche.color)}>
-                                                <Icon className="h-6 w-6" />
+                                        <CardHeader className="flex flex-row items-center gap-3 space-y-0 pb-1 pt-3 px-4">
+                                            <div className={cn("p-1.5 rounded-lg", niche.color)}>
+                                                <Icon className="h-5 w-5" />
                                             </div>
-                                            <CardTitle className="text-base">{niche.title}</CardTitle>
+                                            <CardTitle className="text-sm">{niche.title}</CardTitle>
                                         </CardHeader>
-                                        <CardContent>
-                                            <CardDescription>{niche.description}</CardDescription>
+                                        <CardContent className="px-4 pb-3">
+                                            <CardDescription className="text-xs line-clamp-1">{niche.description}</CardDescription>
                                         </CardContent>
                                     </Card>
                                 );
