@@ -1,6 +1,6 @@
 <!-- HERO IMAGE -->
 <p align="center">
-  <img src="./public/Zynova.png" alt="Portfolio Banner" />
+  <img src="public/Zynova.png" alt="Portfolio Banner" />
 </p>
 
 
