@@ -59,18 +59,18 @@ export function LanguageVoiceSelection({ language, voice, onUpdate }: LanguageVo
     };
 
     return (
-        <div className="space-y-8">
-            <div className="text-center space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">Language & Voice</h2>
-                <p className="text-muted-foreground">Select the language and AI voice for your video.</p>
+        <div className="space-y-4">
+            <div className="text-center">
+                <h2 className="text-2xl font-bold tracking-tight">Language & Voice</h2>
+                <p className="text-sm text-muted-foreground">Select the language and AI voice for your video.</p>
             </div>
 
-            <div className="max-w-md mx-auto space-y-4">
-                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            <div className="max-w-md mx-auto space-y-2">
+                <label className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Select Language
                 </label>
                 <Select value={language} onValueChange={handleLanguageChange}>
-                    <SelectTrigger className="h-12 border-primary/20 bg-muted/20">
+                    <SelectTrigger className="h-10 border-primary/20 bg-muted/20 text-sm">
                         <SelectValue placeholder="Choose a language" />
                     </SelectTrigger>
                     <SelectContent>
@@ -87,13 +87,13 @@ export function LanguageVoiceSelection({ language, voice, onUpdate }: LanguageVo
             </div>
 
             {language && (
-                <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <div className="flex items-center gap-2">
-                        <Volume2 className="h-5 w-5 text-primary" />
-                        <h3 className="font-semibold text-lg">Select Voice</h3>
+                        <Volume2 className="h-4 w-4 text-primary" />
+                        <h3 className="font-semibold text-base">Select Voice</h3>
                     </div>
                     
-                    <ScrollArea className="h-[400px] w-full rounded-xl border bg-muted/10 p-4">
+                    <ScrollArea className="h-[250px] w-full rounded-xl border bg-muted/10 p-3">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {availableVoices.length > 0 ? (
                                 availableVoices.map((v) => {
@@ -117,17 +117,17 @@ export function LanguageVoiceSelection({ language, voice, onUpdate }: LanguageVo
                                                 )}
                                             </div>
 
-                                            <CardContent className="p-4 flex items-center justify-between">
-                                                <div className="flex items-center gap-4">
+                                            <CardContent className="p-3 flex items-center justify-between">
+                                                <div className="flex items-center gap-3">
                                                     <div className={cn(
-                                                        "h-12 w-12 rounded-full flex items-center justify-center transition-colors",
+                                                        "h-10 w-10 rounded-full flex items-center justify-center transition-colors",
                                                         isSelected ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground"
                                                     )}>
-                                                        <span className="text-lg font-bold">{v.name[0]}</span>
+                                                        <span className="text-base font-bold">{v.name[0]}</span>
                                                     </div>
                                                     <div>
-                                                        <p className="font-semibold">{v.name}</p>
-                                                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                                        <p className="font-semibold text-sm">{v.name}</p>
+                                                        <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
                                                             <span className="capitalize">{v.gender}</span>
                                                             <span>•</span>
                                                             <span className="uppercase">{v.model}</span>

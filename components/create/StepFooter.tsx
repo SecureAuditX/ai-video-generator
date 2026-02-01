@@ -19,7 +19,7 @@ export function StepFooter({
     backLabel = "Back"
 }: StepFooterProps) {
     return (
-        <div className="flex justify-between pt-8 border-t mt-8">
+        <div className="flex justify-between pt-4 border-t mt-4">
             <Button 
                 variant="outline" 
                 onClick={onBack} 
