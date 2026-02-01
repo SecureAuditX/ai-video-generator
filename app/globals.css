@@ -123,3 +123,143 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Scrollbar Styles */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.2);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.4);
+  }
+
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thumb-primary\/20::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.2);
+  }
+
+  .scrollbar-thumb-primary\/40:hover::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.4);
+  }
+
+  /* Caption Preview Animations */
+  .caption-preview-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+    overflow: hidden;
+  }
+
+  @keyframes caption-fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.35);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(0.35);
+    }
+  }
+
+  @keyframes caption-slide-in {
+    0% {
+      transform: translateX(-100px) scale(0.35);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0) scale(0.35);
+      opacity: 1;
+    }
+  }
+
+  @keyframes caption-bounce {
+    0%, 100% {
+      transform: translateY(0) scale(0.35);
+    }
+    50% {
+      transform: translateY(-15px) scale(0.35);
+    }
+  }
+
+  @keyframes caption-typewriter {
+    0% {
+      width: 0;
+      opacity: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  @keyframes caption-zoom {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.35);
+    }
+  }
+
+  @keyframes caption-wave {
+    0%, 100% {
+      transform: scale(0.35) rotate(0deg);
+    }
+    25% {
+      transform: scale(0.35) rotate(-2deg);
+    }
+    75% {
+      transform: scale(0.35) rotate(2deg);
+    }
+  }
+
+  .animate-caption-fade-up {
+    animation: caption-fade-up 1.5s ease-out infinite;
+  }
+
+  .animate-caption-slide-in {
+    animation: caption-slide-in 1.5s ease-out infinite;
+  }
+
+  .animate-caption-bounce {
+    animation: caption-bounce 2s ease-in-out infinite;
+  }
+
+  .animate-caption-typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: caption-typewriter 3s steps(20) infinite;
+  }
+
+  .animate-caption-zoom {
+    animation: caption-zoom 2s ease-in-out infinite;
+  }
+
+  .animate-caption-wave {
+    animation: caption-wave 3s ease-in-out infinite;
+  }
+}
