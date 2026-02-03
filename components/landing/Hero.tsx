@@ -5,12 +5,9 @@ import { SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-16 md:pt-24 lg:pt-32 pb-16">
-      {/* Background gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none z-[-1]">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] opacity-50" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-[100px] opacity-50" />
-      </div>
+    <section className="relative pt-16 md:pt-24 lg:pt-32 pb-16">
+      {/* Background gradients removed - now using global AntigravityEffects */}
+
 
       <div className="container px-4 md:px-6 mx-auto flex flex-col items-center text-center space-y-8">
         <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 animate-fade-in-up">

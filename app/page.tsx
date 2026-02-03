@@ -5,7 +5,7 @@ import { Navbar } from "@/components/landing/Navbar";
 
 export default function Home() {
   return (
-    <main className="dark bg-background text-foreground flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-between">
       <Navbar />
       <Hero />
       <Features />

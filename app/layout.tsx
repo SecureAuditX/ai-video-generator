@@ -53,7 +53,8 @@ const orbitron = Orbitron({
 
 
 import { ClerkProvider } from '@clerk/nextjs'
-
+import { AntigravityEffects, PageTransition } from "@/components/providers/AntigravityEffects";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "AI Video Generator",
@@ -67,9 +68,13 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" className="dark">
         <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${bebasNeue.variable} ${poppins.variable} ${montserrat.variable} ${orbitron.variable} antialiased`}>
-          {children}
+          <AntigravityEffects />
+          <PageTransition>
+            {children}
+          </PageTransition>
+          <Toaster position="bottom-right" theme="dark" />
         </body>
       </html>
     </ClerkProvider>

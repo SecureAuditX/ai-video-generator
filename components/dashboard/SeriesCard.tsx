@@ -39,6 +39,7 @@ export function SeriesCard({ series, onDelete, onStatusChange }: SeriesCardProps
     const router = useRouter();
     const style = VideoStyles.find(s => s.id === series.video_style);
     const [isHovered, setIsHovered] = useState(false);
+    const [isGenerating, setIsGenerating] = useState(false);
 
     const handleEdit = () => {
         router.push(`/dashboard/create?edit=${series.id}`);
@@ -69,12 +70,50 @@ export function SeriesCard({ series, onDelete, onStatusChange }: SeriesCardProps
         }
     };
 
+    const handleGenerate = async () => {
+        try {
+            setIsGenerating(true);
+            const response = await fetch("/api/inngest", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: "video/generate.requested",
+                    data: {
+                        seriesId: series.id,
+                    },
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to trigger generation");
+            }
+
+            import("sonner").then(({ toast }) => {
+                toast.success("Generation started!", {
+                    description: "Your video is being prepared in the background.",
+                });
+            });
+        } catch (error) {
+            console.error(error);
+            import("sonner").then(({ toast }) => {
+                toast.error("Failed to start generation");
+            });
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
     return (
         <Card 
-            className="group overflow-hidden border shadow-sm hover:shadow-md transition-all duration-300"
+            className="group relative overflow-hidden border border-white/5 bg-card/50 backdrop-blur-xl shadow-2xl hover:border-primary/50 transition-all duration-500"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
+            {/* Hover Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
             {/* Thumbnail Area */}
             <div className="relative aspect-[9/16] overflow-hidden bg-muted">
                 {style?.image ? (
@@ -173,9 +212,23 @@ export function SeriesCard({ series, onDelete, onStatusChange }: SeriesCardProps
                     <Eye className="h-3.5 w-3.5" />
                     Videos
                 </Button>
-                <Button size="sm" className="w-full text-[11px] gap-1.5 h-8 font-semibold shadow-sm">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    Generate
+                <Button 
+                    size="sm" 
+                    className="w-full text-[11px] gap-1.5 h-8 font-semibold shadow-sm"
+                    onClick={handleGenerate}
+                    disabled={isGenerating}
+                >
+                    {isGenerating ? (
+                        <>
+                            <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                            Sending...
+                        </>
+                    ) : (
+                        <>
+                            <Sparkles className="h-3.5 w-3.5" />
+                            Generate
+                        </>
+                    )}
                 </Button>
             </CardFooter>
         </Card>
