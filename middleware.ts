@@ -8,6 +8,11 @@ const isPublicRoute = createRouteMatcher([
 ])
 
 export default clerkMiddleware(async (auth, req) => {
+  // Completely ignore all Inngest related requests - allow Inngest SDK to handle its own security
+  if (req.nextUrl.pathname.startsWith('/api/inngest')) {
+    return;
+  }
+
   if (!isPublicRoute(req)) await auth.protect()
 })
 
