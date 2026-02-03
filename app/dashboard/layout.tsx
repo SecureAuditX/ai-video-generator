@@ -11,7 +11,7 @@ export default async function DashboardLayout({
   await syncUser();
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen bg-transparent">
       <Sidebar />
       <div className="pl-64">
         <Header />

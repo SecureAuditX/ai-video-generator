@@ -73,16 +73,13 @@ export function SeriesCard({ series, onDelete, onStatusChange }: SeriesCardProps
     const handleGenerate = async () => {
         try {
             setIsGenerating(true);
-            const response = await fetch("/api/inngest", {
+            const response = await fetch("/api/video/generate", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: "video/generate.requested",
-                    data: {
-                        seriesId: series.id,
-                    },
+                    seriesId: series.id,
                 }),
             });
 

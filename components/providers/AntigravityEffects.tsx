@@ -12,17 +12,50 @@ export function AntigravityEffects() {
   if (!mounted) return null;
 
   return (
-    <div className="antigravity-bg pointer-events-none overflow-hidden">
-      {/* Background Blobs (Pure CSS) */}
-      <div className="antigravity-blob bg-primary w-[500px] h-[500px] -top-20 -left-20 animate-[floating-blob_20s_infinite_alternate]" />
-      <div className="antigravity-blob bg-blue-600 w-[400px] h-[400px] top-1/2 -right-20 animate-[floating-blob_25s_infinite_alternate-reverse]" />
-      <div className="antigravity-blob bg-purple-600 w-[600px] h-[600px] -bottom-40 left-1/4 animate-[floating-blob_30s_infinite_alternate]" />
+    <div className="antigravity-container">
+      {/* Background Blobs with absolute fallback styles */}
+      <div 
+        className="antigravity-blob animate-[floating-blob_20s_infinite_alternate]" 
+        style={{
+          width: '600px',
+          height: '600px',
+          top: '-100px',
+          left: '-100px',
+          backgroundColor: '#7c3aed', // primary/violet fallback
+          filter: 'blur(120px)',
+          opacity: 0.15
+        }}
+      />
+      <div 
+        className="antigravity-blob animate-[floating-blob_25s_infinite_alternate-reverse]" 
+        style={{
+          width: '500px',
+          height: '500px',
+          top: '40%',
+          right: '-100px',
+          backgroundColor: '#2563eb', // blue fallback
+          filter: 'blur(120px)',
+          opacity: 0.12
+        }}
+      />
+      <div 
+        className="antigravity-blob animate-[floating-blob_30s_infinite_alternate]" 
+        style={{
+          width: '700px',
+          height: '700px',
+          bottom: '-200px',
+          left: '20%',
+          backgroundColor: '#9333ea', // purple fallback
+          filter: 'blur(120px)',
+          opacity: 0.15
+        }}
+      />
       
       {/* Mesh Overlay */}
-      <div className="glow-mesh absolute inset-0 opacity-40" />
+      <div className="glow-mesh" />
       
       {/* Noise Texture */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
     </div>
   );
 }

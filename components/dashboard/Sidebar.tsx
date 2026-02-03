@@ -30,20 +30,20 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-screen flex-col border-r bg-white w-64 fixed left-0 top-0 z-30">
+    <div className="flex h-screen flex-col border-r border-white/5 bg-black/20 backdrop-blur-xl w-64 fixed left-0 top-0 z-30">
       <div className="p-6">
         <Link href="/dashboard" className="flex items-center gap-3 mb-8">
           <Image src="/logo.png" alt="Zynova Logo" width={32} height={32} className="rounded-md" />
-          <span className="text-xl font-bold text-gray-900">Zynova</span>
+          <span className="text-xl font-bold text-white">Zynova</span>
         </Link>
         
-        <Button asChild className="w-full justify-start gap-2 h-12 text-base font-semibold shadow-md mb-6" size="lg">
+        <Button asChild className="w-full justify-start gap-2 h-12 text-base font-semibold shadow-xl shadow-primary/20 mb-6 bg-primary hover:bg-primary/90 text-white" size="lg">
           <Link href="/dashboard/create">
             <Plus className="h-5 w-5" />
             Create New Series
           </Link>
         </Button>
-
+ 
         <div className="space-y-2">
           {sidebarItems.map((item) => {
             const Icon = item.icon;
@@ -55,34 +55,35 @@ export function Sidebar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium transition-colors hover:bg-gray-100/80 text-gray-700",
-                  isActive && "bg-gray-100 text-primary font-semibold"
+                  "flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium transition-all hover:bg-white/5 text-gray-400 hover:text-white",
+                  isActive && "bg-white/10 text-white font-semibold"
                 )}
               >
-                <Icon className={cn("h-6 w-6", isActive ? "text-primary" : "text-gray-500")} />
+                <Icon className={cn("h-6 w-6", isActive ? "text-primary" : "text-gray-400")} />
                 {item.label}
               </Link>
             );
           })}
         </div>
       </div>
-
-      <div className="mt-auto p-6 border-t border-gray-100 space-y-2">
+ 
+      <div className="mt-auto p-6 border-t border-white/5 space-y-2">
         <Link
             href="/dashboard/upgrade"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium transition-colors hover:bg-gray-100/80 text-gray-700"
+            className="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium transition-all hover:bg-white/5 text-gray-400 hover:text-white"
         >
             <Sparkles className="h-6 w-6 text-amber-500" />
             Upgrade
         </Link>
         <Link
             href="/dashboard/profile"
-            className="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium transition-colors hover:bg-gray-100/80 text-gray-700"
+            className="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium transition-all hover:bg-white/5 text-gray-400 hover:text-white"
         >
-            <User className="h-6 w-6 text-gray-500" />
+            <User className="h-6 w-6 text-gray-400" />
             Profile
         </Link>
       </div>
     </div>
+
   );
 }
