@@ -25,7 +25,7 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-10 pb-10">
       {/* Hero Section */}
-      <div className="bg-white rounded-3xl p-8 md:p-12 border shadow-sm relative overflow-hidden group">
+      <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/10 shadow-sm relative overflow-hidden group">
         <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:scale-110 transition-transform duration-700 pointer-events-none">
           <Video size={300} />
         </div>
