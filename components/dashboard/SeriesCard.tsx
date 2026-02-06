@@ -84,18 +84,25 @@ export function SeriesCard({ series, onDelete, onStatusChange }: SeriesCardProps
             });
 
             if (!response.ok) {
-                throw new Error("Failed to trigger generation");
+                const errorData = await response.json().catch(() => ({}));
+                console.error("Generation trigger failed:", errorData);
+                throw new Error(errorData.details || "Failed to trigger generation");
             }
+
+            const data = await response.json();
+            console.log("Generation triggered successfully:", data);
 
             import("sonner").then(({ toast }) => {
                 toast.success("Generation started!", {
                     description: "Your video is being prepared in the background.",
                 });
             });
-        } catch (error) {
-            console.error(error);
+        } catch (error: any) {
+            console.error("Error in handleGenerate:", error);
             import("sonner").then(({ toast }) => {
-                toast.error("Failed to start generation");
+                toast.error("Failed to start generation", {
+                    description: error.message
+                });
             });
         } finally {
             setIsGenerating(false);

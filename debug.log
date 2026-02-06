@@ -1,0 +1,16 @@
+[2026-02-06T12:50:00.547Z] API: /api/video/generate hit 
+[2026-02-06T12:50:00.615Z] API: seriesId received {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b","userId":"user_3912nix3hVMlGIGeCoZmmedFCZv"}
+[2026-02-06T12:50:00.688Z] API: Inngest event sent {"ids":["01KGSG13SH6QGSGN1ZE4FYX13P"]}
+[2026-02-06T12:50:01.027Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:50:02.022Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:50:46.084Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:53:03.293Z] API: /api/video/generate hit 
+[2026-02-06T12:53:03.301Z] API: seriesId received {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b","userId":"user_3912nix3hVMlGIGeCoZmmedFCZv"}
+[2026-02-06T12:53:03.356Z] API: Inngest event sent {"ids":["01KGSG6P6NWWHGAD1XMMP590MA"]}
+[2026-02-06T12:53:03.902Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:53:10.390Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:53:39.944Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:54:39.084Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:55:54.073Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:58:23.864Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
+[2026-02-06T12:58:34.839Z] INNGEST: generateVideo STARTED {"seriesId":"b6475747-ed3f-4737-b2b0-01713bbc845b"}
