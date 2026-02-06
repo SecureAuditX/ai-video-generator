@@ -13,9 +13,29 @@ export async function uploadAudio(buffer: Buffer, fileName: string): Promise<str
         });
 
     if (error) {
-        // If bucket doesn't exist error, we could try to create it here, but admin client might not have permissions to create buckets depending on RLS.
-        // For now, just throw.
         throw new Error(`Failed to upload audio: ${error.message}`);
+    }
+
+    const { data: { publicUrl } } = supabase.storage
+        .from(bucket)
+        .getPublicUrl(fileName);
+
+    return publicUrl;
+}
+
+export async function uploadImage(buffer: Buffer, fileName: string): Promise<string> {
+    const supabase = createAdminClient();
+    const bucket = "images";
+
+    const { data, error } = await supabase.storage
+        .from(bucket)
+        .upload(fileName, buffer, {
+            contentType: "image/png",
+            upsert: true
+        });
+
+    if (error) {
+        throw new Error(`Failed to upload image: ${error.message}`);
     }
 
     const { data: { publicUrl } } = supabase.storage
