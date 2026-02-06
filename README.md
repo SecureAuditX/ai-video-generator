@@ -1,7 +1,8 @@
+# Zynova - AI Short Video Generator
+
 <div align="center">
-  <img src="public/zynova.png" alt="Zynova Banner" width="100%" />
-  
-  # Zynova - AI Short Video Generator
+  <img src="public/Zynova.png" alt="Zynova Banner" width="100%" />
+
 
 **Create Viral Short-Form Videos with the Power of AI**
 

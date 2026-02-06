@@ -154,13 +154,64 @@ export const generateVideo = inngest.createFunction(
         // Update the script with audio URLs
         const finalScript = { ...videoScript, scenes: scenesWithAudio };
 
-        console.log("Inngest: All audio generated");
+        // 4. Generate Images for each scene
+        console.log("Inngest: Generating images for each scene");
+        const scenesWithImages = [];
+        for (let i = 0; i < finalScript.scenes.length; i++) {
+            const scene = finalScript.scenes[i];
+            const sceneWithImage = await step.run(`generate-image-${i}`, async () => {
+                console.log(`Inngest: Generating image for scene ${i}`);
+                const { generateImage } = await import("@/lib/replicate");
+                const { uploadImage } = await import("@/lib/storage");
+
+                // Generate image buffer
+                const imageBuffer = await generateImage(scene.image_prompt);
+
+                // Upload to storage
+                const fileName = `${seriesId}/scene-${i}-${Date.now()}.png`;
+                const publicUrl = await uploadImage(imageBuffer, fileName);
+
+                console.log(`Inngest: Image uploaded for scene ${i}: ${publicUrl}`);
+
+                return {
+                    ...scene,
+                    image_url: publicUrl
+                };
+            });
+            scenesWithImages.push(sceneWithImage);
+        }
+
+        const fullScript = { ...finalScript, scenes: scenesWithImages };
+        console.log("Inngest: All images generated");
+
+        // 5. Save all assets to database
+        await step.run("save-assets-to-db", async () => {
+            console.log("Inngest: Saving video assets to database");
+            const supabase = createAdminClient();
+
+            const { error } = await supabase
+                .from("generated_videos")
+                .insert({
+                    series_id: seriesId,
+                    user_id: event.data.userId,
+                    title: fullScript.title,
+                    script: fullScript,
+                    status: "completed"
+                });
+
+            if (error) {
+                console.error("Inngest: Error saving to DB", error);
+                throw new Error(`Failed to save assets: ${error.message}`);
+            }
+        });
+
+        console.log("Inngest: Video generation completed successfully");
 
         return {
             success: true,
             seriesId,
-            script: finalScript,
-            message: "Video generation steps 1-3 successful"
+            script: fullScript,
+            message: "Video generation completed successfully"
         };
     }
 );
