@@ -191,17 +191,16 @@ export const generateVideo = inngest.createFunction(
 
             const { error } = await supabase
                 .from("generated_videos")
-                .insert({
-                    series_id: seriesId,
-                    user_id: event.data.userId,
+                .update({
                     title: fullScript.title,
                     script: fullScript,
                     status: "completed"
-                });
+                })
+                .eq('id', event.data.videoId);
 
             if (error) {
-                console.error("Inngest: Error saving to DB", error);
-                throw new Error(`Failed to save assets: ${error.message}`);
+                console.error("Inngest: Error updating DB", error);
+                throw new Error(`Failed to update assets: ${error.message}`);
             }
         });
 
